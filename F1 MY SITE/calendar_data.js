@@ -1,0 +1,266 @@
+const calendarData = [
+    { 
+        round: 1, 
+        dates: '14-16 MAR', 
+        country: 'Australia', 
+        track: 'Melbourne Grand Prix Circuit', 
+        flagUrl: 'img/flags/au.png', 
+        trackImageUrl: 'img/tracks/melbourne.png',
+        status: 'completed',
+        raceDate: '2025-03-16T15:00:00Z',
+        description: 'The season kicks off with the fast and flowing Albert Park Circuit. A fan favorite that always delivers excitement.'
+    },
+    { 
+        round: 2, 
+        dates: '21-23 MAR', 
+        country: 'China', 
+        track: 'Shanghai International Circuit', 
+        flagUrl: 'img/flags/cn.png', 
+        trackImageUrl: 'img/tracks/shanghai.png',
+        status: 'upcoming',
+        raceDate: '2025-03-23T07:00:00Z',
+        description: 'A return to Shanghai, known for its unique layout and long back straight that always produces overtakes.'
+    },
+    { 
+        round: 3, 
+        dates: '04-06 APR', 
+        country: 'Japan', 
+        track: 'Suzuka International Racing Course', 
+        flagUrl: 'img/flags/jp.png', 
+        trackImageUrl: 'img/tracks/suzuka.png',
+        status: 'upcoming',
+        raceDate: '2025-04-06T05:00:00Z',
+        description: 'Suzuka, a legendary circuit featuring the iconic figure-eight layout and high-speed corners.'
+    },
+    { 
+        round: 4, 
+        dates: '11-13 APR', 
+        country: 'Bahrain', 
+        track: 'Bahrain International Circuit', 
+        flagUrl: 'img/flags/bh.png', 
+        trackImageUrl: 'img/tracks/bahrain.png',
+        status: 'upcoming',
+        raceDate: '2025-04-13T15:00:00Z',
+        description: 'A desert night race in Sakhir, famous for its long straights and dramatic wheel-to-wheel action.'
+    },
+    { 
+        round: 5, 
+        dates: '18-20 APR', 
+        country: 'Saudi Arabia', 
+        track: 'Jeddah Corniche Circuit', 
+        flagUrl: 'img/flags/sa.png', 
+        trackImageUrl: 'img/tracks/jeddah.png',
+        status: 'upcoming',
+        raceDate: '2025-04-20T18:00:00Z',
+        description: 'The high-speed streets of Jeddah provide a thrilling challenge under the lights on the Red Sea coast.'
+    },
+    { 
+        round: 6, 
+        dates: '02-04 MAY', 
+        country: 'USA', 
+        track: 'Miami International Autodrome', 
+        flagUrl: 'img/flags/us.png', 
+        trackImageUrl: 'img/tracks/miami.png',
+        status: 'upcoming',
+        raceDate: '2025-05-04T20:00:00Z',
+        description: 'Miami hosts its glamorous street circuit around Hard Rock Stadium, combining glitz with high-speed racing.'
+    },
+    { 
+        round: 7, 
+        dates: '16-18 MAY', 
+        country: 'Italy', 
+        track: 'Autodromo Enzo e Dino Ferrari (Imola)', 
+        flagUrl: 'img/flags/it.png', 
+        trackImageUrl: 'img/tracks/imola.png',
+        status: 'upcoming',
+        raceDate: '2025-05-18T13:00:00Z',
+        description: 'A classic circuit steeped in history, Imola delivers a technical challenge with elevation changes and chicanes.'
+    },
+    { 
+        round: 8, 
+        dates: '23-25 MAY', 
+        country: 'Monaco', 
+        track: 'Circuit de Monaco', 
+        flagUrl: 'img/flags/mc.png', 
+        trackImageUrl: 'img/tracks/monaco.png',
+        status: 'upcoming',
+        raceDate: '2025-05-25T13:00:00Z',
+        description: 'The most iconic street race in the world, where precision is key and history is written every lap.'
+    },
+    { 
+        round: 9, 
+        dates: '30 MAY-01 JUN', 
+        country: 'Spain', 
+        track: 'Circuit de Barcelona-Catalunya', 
+        flagUrl: 'img/flags/es.png', 
+        trackImageUrl: 'img/tracks/barcelona.png',
+        status: 'upcoming',
+        raceDate: '2025-06-01T13:00:00Z',
+        description: 'Barcelona provides a balanced test of aerodynamics and tire management for teams and drivers alike.'
+    },
+    { 
+        round: 10, 
+        dates: '13-15 JUN', 
+        country: 'Canada', 
+        track: 'Circuit Gilles Villeneuve', 
+        flagUrl: 'img/flags/ca.png', 
+        trackImageUrl: 'img/tracks/montreal.png',
+        status: 'upcoming',
+        raceDate: '2025-06-15T18:00:00Z',
+        description: 'A fan-favorite with its long straights and famous “Wall of Champions” in Montreal.'
+    },
+    { 
+        round: 11, 
+        dates: '27-29 JUN', 
+        country: 'Austria', 
+        track: 'Red Bull Ring', 
+        flagUrl: 'img/flags/at.png', 
+        trackImageUrl: 'img/tracks/spielberg.png',
+        status: 'upcoming',
+        raceDate: '2025-06-29T13:00:00Z',
+        description: 'A short lap but high in action, the Red Bull Ring is nestled in the Styrian mountains.'
+    },
+    { 
+        round: 12, 
+        dates: '04-06 JUL', 
+        country: 'United Kingdom', 
+        track: 'Silverstone Circuit', 
+        flagUrl: 'img/flags/gb.png', 
+        trackImageUrl: 'img/tracks/silverstone.png',
+        status: 'upcoming',
+        raceDate: '2025-07-06T13:00:00Z',
+        description: 'The birthplace of Formula 1, Silverstone is a high-speed challenge loved by fans worldwide.'
+    },
+    { 
+        round: 13, 
+        dates: '25-27 JUL', 
+        country: 'Belgium', 
+        track: 'Circuit de Spa-Francorchamps', 
+        flagUrl: 'img/flags/be.png', 
+        trackImageUrl: 'img/tracks/spa.png',
+        status: 'upcoming',
+        raceDate: '2025-07-27T13:00:00Z',
+        description: 'Famous for Eau Rouge and unpredictable weather, Spa is a jewel of the F1 calendar.'
+    },
+    { 
+        round: 14, 
+        dates: '01-03 AUG', 
+        country: 'Hungary', 
+        track: 'Hungaroring', 
+        flagUrl: 'img/flags/hu.png', 
+        trackImageUrl: 'img/tracks/hungaroring.png',
+        status: 'upcoming',
+        raceDate: '2025-08-03T13:00:00Z',
+        description: 'A twisty track outside Budapest, often compared to a karting circuit due to its technical nature.'
+    },
+    { 
+        round: 15, 
+        dates: '29-31 AUG', 
+        country: 'Netherlands', 
+        track: 'Circuit Zandvoort', 
+        flagUrl: 'img/flags/nl.png', 
+        trackImageUrl: 'img/tracks/zandvoort.png',
+        status: 'upcoming',
+        raceDate: '2025-08-31T13:00:00Z',
+        description: 'The seaside Zandvoort circuit with its banked corners creates a unique racing challenge.'
+    },
+    { 
+        round: 16, 
+        dates: '05-07 SEP', 
+        country: 'Italy', 
+        track: 'Autodromo Nazionale Monza', 
+        flagUrl: 'img/flags/it.png', 
+        trackImageUrl: 'img/tracks/monza.png',
+        status: 'upcoming',
+        raceDate: '2025-09-07T13:00:00Z',
+        description: 'The Temple of Speed, Monza is all about slipstreaming and breathtaking high-speed action.'
+    },
+    { 
+        round: 17, 
+        dates: '19-21 SEP', 
+        country: 'Azerbaijan', 
+        track: 'Baku City Circuit', 
+        flagUrl: 'img/flags/az.png', 
+        trackImageUrl: 'img/tracks/baku.png',
+        status: 'upcoming',
+        raceDate: '2025-09-21T13:00:00Z',
+        description: 'A mix of narrow streets and long straights, Baku always delivers drama and surprises.'
+    },
+    { 
+        round: 18, 
+        dates: '03-05 OCT', 
+        country: 'Singapore', 
+        track: 'Marina Bay Street Circuit', 
+        flagUrl: 'img/flags/sg.png', 
+        trackImageUrl: 'img/tracks/singapore.png',
+        status: 'upcoming',
+        raceDate: '2025-10-05T12:00:00Z',
+        description: 'The original night race, Singapore is physically demanding and visually stunning under the lights.'
+    },
+    { 
+        round: 19, 
+        dates: '17-19 OCT', 
+        country: 'USA', 
+        track: 'Circuit of the Americas (Austin)', 
+        flagUrl: 'img/flags/us.png', 
+        trackImageUrl: 'img/tracks/austin.png',
+        status: 'upcoming',
+        raceDate: '2025-10-19T20:00:00Z',
+        description: 'COTA features challenging elevation changes and a mix of technical and high-speed sections.'
+    },
+    { 
+        round: 20, 
+        dates: '24-26 OCT', 
+        country: 'Mexico', 
+        track: 'Autódromo Hermanos Rodríguez', 
+        flagUrl: 'img/flags/mx.png', 
+        trackImageUrl: 'img/tracks/mexico.png',
+        status: 'upcoming',
+        raceDate: '2025-10-26T20:00:00Z',
+        description: 'The passionate Mexican fans create a vibrant atmosphere in Mexico City’s stadium section.'
+    },
+    { 
+        round: 21, 
+        dates: '07-09 NOV', 
+        country: 'Brazil', 
+        track: 'Interlagos Circuit (São Paulo)', 
+        flagUrl: 'img/flags/br.png', 
+        trackImageUrl: 'img/tracks/brazil.png',
+        status: 'upcoming',
+        raceDate: '2025-11-09T17:00:00Z',
+        description: 'A legendary venue, Interlagos is known for dramatic races and championship-defining moments.'
+    },
+    { 
+        round: 22, 
+        dates: '20-22 NOV', 
+        country: 'USA', 
+        track: 'Las Vegas Strip Circuit', 
+        flagUrl: 'img/flags/us.png', 
+        trackImageUrl: 'img/tracks/lasvegas.png',
+        status: 'upcoming',
+        raceDate: '2025-11-22T06:00:00Z', // Saturday race
+        description: 'The newest night race on the Las Vegas Strip combines speed, lights, and pure spectacle.'
+    },
+    { 
+        round: 23, 
+        dates: '28-30 NOV', 
+        country: 'Qatar', 
+        track: 'Lusail International Circuit', 
+        flagUrl: 'img/flags/qa.png', 
+        trackImageUrl: 'img/tracks/lusail.png',
+        status: 'upcoming',
+        raceDate: '2025-11-30T16:00:00Z',
+        description: 'Lusail hosts another night race, with sweeping fast corners and a desert backdrop.'
+    },
+    { 
+        round: 24, 
+        dates: '05-07 DEC', 
+        country: 'Abu Dhabi', 
+        track: 'Yas Marina Circuit', 
+        flagUrl: 'img/flags/ae.png', 
+        trackImageUrl: 'img/tracks/yasmarina.png',
+        status: 'upcoming',
+        raceDate: '2025-12-07T13:00:00Z',
+        description: 'The season finale at Yas Marina combines twilight racing with a spectacular desert sunset backdrop.'
+    }
+];

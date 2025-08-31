@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC F1 | League News</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="navbar">
+            <a href="index.html" class="nav-logo">ACF1</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="results.html" class="nav-link">Results</a></li>
+                <li class="nav-item"><a href="rankings.html" class="nav-link">Power Rankings</a></li>
+                <li class="nav-item"><a href="standings.html" class="nav-link">Standings</a></li>
+                <li class="nav-item"><a href="news.html" class="nav-link active">News</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="rankings-main">
+        <div class="rankings-container">
+            <div class="rankings-header">
+                <h1>ACF1 News</h1>
+                <p>The latest updates, reports, and announcements from the AC F1 Championship.</p>
+            </div>
+
+            <!-- NEW: Featured Article Container -->
+            <div id="featured-article-container">
+                <!-- The newest article will be dynamically injected here by news.js -->
+            </div>
+
+            <div class="news-search-container">
+                <input type="search" id="news-search-input" class="news-search-bar" placeholder="Search articles by title, category, or keyword...">
+            </div>
+
+            <!-- NEW: Header for the rest of the news -->
+            <div class="news-section-header">
+                <h2>More News</h2>
+            </div>
+
+            <div id="news-grid-container" class="news-grid-container">
+                <!-- Other news articles will be injected here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- TEMPLATE for the new FEATURED ARTICLE -->
+    <template id="featured-article-template">
+        <a href="" class="featured-article-link">
+            <article class="featured-article">
+                <div class="featured-content">
+                    <span class="news-category" data-category></span>
+                    <h2 data-title></h2>
+                    <p data-snippet></p>
+                    <span class="read-more">Read Full Story &rarr;</span>
+                </div>
+            </article>
+        </a>
+    </template>
+
+    <!-- TEMPLATE for a single standard news card (unchanged) -->
+    <template id="article-card-template">
+        <a class="article-card-link">
+            <article class="article-card">
+                <img src="" alt="" class="article-card-img" data-img>
+                <div class="article-card-content">
+                    <span class="news-category" data-category></span>
+                    <h3 data-title></h3>
+                    <p data-snippet></p>
+                    <span class="read-more">Read More &rarr;</span>
+                </div>
+            </article>
+        </a>
+    </template>
+
+    <script src="news_database.js"></script>
+    <script src="news.js"></script>
+
+</body>
+</html>

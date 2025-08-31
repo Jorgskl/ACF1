@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC F1 Tournament Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="navbar">
+            <a href="index.html" class="nav-logo">ACF1</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="results.html" class="nav-link">Results</a></li>
+                <li class="nav-item"><a href="rankings.html" class="nav-link">Power Rankings</a></li>
+                <li class="nav-item"><a href="standings.html" class="nav-link">Standings</a></li>
+                <li class="nav-item"><a href="calendar.html" class="nav-link">Calendar</a></li>
+                <li class="nav-item"><a href="news.html" class="nav-link">News</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- SECTION 1: DYNAMIC VIDEO HERO -->
+        <section id="hero-v2">
+            <video id="hero-video" autoplay muted loop playsinline>
+                <!-- NOTE: You can replace this with a local video like "Video/f1.mp4" if you have it -->
+                <source src="Video/f1.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title animate-on-load">WELCOME TO THE GRID</h1>
+                <p class="hero-description animate-on-load">The pinnacle of virtual motorsport. 24 Races. 20 Drivers. 1 Champion. This is Assetto Corsa F1.</p>
+                <a href="standings.html" class="hero-button animate-on-load">View Standings</a>
+            </div>
+        </section>
+
+        <!-- SECTION 2: REDESIGNED NEXT RACE (Countdown Removed) -->
+        <section id="next-race" class="container">
+            <div class="section-title anim-fade-in">
+                <span>UPCOMING EVENT</span>
+                <h2 data-race-name>Loading...</h2>
+            </div>
+            <div class="next-race-container anim-fade-in" id="race-card-container">
+                <div class="track-map">
+                    <img src="img/tracks/melbourne.png" alt="Track Map" id="track-map-img">
+                </div>
+                <div class="race-details-v2">
+                    <h3 data-race-round-track></h3>
+                    <p data-race-description></p>
+                    <div class="race-date-info">
+                        <strong>RACE DAY:</strong> <span data-race-date></span>
+                    </div>
+                    <a href="calendar.html" class="details-button">Full Calendar &rarr;</a>
+                </div>
+            </div>
+            <div class="next-race-container anim-fade-in" id="season-end-message" style="display: none;">
+                <h3>The season has concluded. Thank you for an incredible year of racing!</h3>
+            </div>
+        </section>
+
+        <!-- SECTION 3: NEW CHAMPIONSHIP STANDINGS -->
+        <section id="standings-preview" class="container">
+             <div class="section-title anim-fade-in">
+                <span>CHAMPIONSHIP BATTLE</span>
+                <h2>CURRENT STANDINGS</h2>
+            </div>
+            <div class="standings-grid anim-fade-in">
+                <div class="standings-column">
+                    <h3>Driver Standings</h3>
+                    <div id="driver-standings-preview-list" class="standings-list-preview">
+                        <!-- Driver standings will be injected here -->
+                    </div>
+                    <a href="standings.html" class="details-button">Full Driver Standings &rarr;</a>
+                </div>
+                <div class="standings-column">
+                    <h3>Constructor Standings</h3>
+                    <div id="team-standings-preview-list" class="standings-list-preview">
+                        <!-- Team standings will be injected here -->
+                    </div>
+                    <a href="standings.html" class="details-button">Full Team Standings &rarr;</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SECTION 4: REVAMPED LATEST NEWS -->
+        <section id="latest-news-home" class="container">
+            <div class="section-title anim-fade-in">
+                <span>LEAGUE UPDATES</span>
+                <h2>LATEST NEWS</h2>
+            </div>
+            <div class="news-home-grid anim-fade-in">
+                <div id="featured-news-home" class="featured-news-card">
+                    <!-- Featured news item will be injected here -->
+                </div>
+                <div id="other-news-home" class="other-news-grid">
+                    <!-- Two other news items will be injected here -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content container">
+             <a href="index.html" class="nav-logo">ACF1</a>
+            <p>&copy; 2025 Assetto Corsa F1 Tournament. All Rights Reserved.</p>
+             <ul class="footer-links">
+                <li><a href="results.html">Results</a></li>
+                <li><a href="standings.html">Standings</a></li>
+                <li><a href="news.html">News</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- TEMPLATES -->
+    <template id="driver-standing-item-template">
+        <div class="standing-item-preview">
+            <div class="standing-pos" data-rank></div>
+            <div class="standing-driver">
+                <span class="team-color-bar" data-team-bar></span>
+                <span data-name></span>
+            </div>
+            <div class="standing-points"><span data-points></span> PTS</div>
+        </div>
+    </template>
+
+    <template id="team-standing-item-template">
+        <div class="standing-item-preview">
+            <div class="standing-pos" data-rank></div>
+            <div class="standing-driver">
+                <img src="" class="team-logo-preview" data-img>
+                <span data-name></span>
+            </div>
+            <div class="standing-points"><span data-points></span> PTS</div>
+        </div>
+    </template>
+    
+    <template id="featured-news-template">
+         <a href="#" class="article-card-link">
+            <article class="article-card featured">
+                <img src="" alt="News Image" class="article-card-img" data-img>
+                <div class="article-card-content">
+                    <span class="news-category" data-category></span>
+                    <h3 data-title></h3>
+                    <p data-snippet></p>
+                    <span class="read-more">Read More &rarr;</span>
+                </div>
+            </article>
+        </a>
+    </template>
+
+    <template id="news-item-template">
+        <a href="#" class="article-card-link">
+            <article class="article-card">
+                <img src="" alt="News Image" class="article-card-img" data-img>
+                <div class="article-card-content">
+                    <span class="news-category" data-category></span>
+                    <h3 data-title></h3>
+                    <span class="read-more">Read More &rarr;</span>
+                </div>
+            </article>
+        </a>
+    </template>
+
+
+    <script src="database.js"></script>
+    <script src="news_database.js"></script>
+    <script src="calendar_data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- INITIALIZE ALL DYNAMIC CONTENT ---
+            initNextRace();
+            initStandings();
+            initLatestNews();
+            initScrollAnimations();
+
+            // --- LOGIC FOR NEXT RACE SECTION (Countdown logic removed) ---
+            function initNextRace() {
+                if (typeof calendarData === 'undefined') return;
+
+                const nextRace = calendarData.find(race => race.status !== 'completed');
+                const raceCardContainer = document.getElementById('race-card-container');
+                const seasonEndMessage = document.getElementById('season-end-message');
+
+                if (nextRace) {
+                    raceCardContainer.style.display = 'grid';
+                    seasonEndMessage.style.display = 'none';
+
+                    document.querySelector('[data-race-name]').textContent = `${nextRace.country} GRAND PRIX`;
+                    document.querySelector('[data-race-round-track]').textContent = `Round ${nextRace.round}: ${nextRace.track}`;
+                    document.querySelector('[data-race-description]').textContent = nextRace.description;
+                    document.getElementById('track-map-img').src = nextRace.trackImageUrl;
+                    
+                    // Display the race date
+                    const raceDateObj = new Date(nextRace.raceDate);
+                    document.querySelector('[data-race-date]').textContent = raceDateObj.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+                } else {
+                    document.querySelector('[data-race-name]').textContent = "SEASON FINALE";
+                    raceCardContainer.style.display = 'none';
+                    seasonEndMessage.style.display = 'block';
+                }
+            }
+            
+            // --- LOGIC FOR STANDINGS PREVIEW ---
+            function initStandings() {
+                if (typeof tournamentData === 'undefined') return;
+                const db = tournamentData;
+
+                // --- Helper Functions ---
+                function calculateDriverStandings() {
+                    const standings = {};
+                    Object.keys(db.drivers).forEach(id => { standings[id] = { id, points: 0 }; });
+                    db.allEvents.forEach(event => {
+                        if (event.eventType === 'race') {
+                            event.sessions.find(s => s.type === 'race')?.results.forEach(result => {
+                                if (standings[result.driverId] && result.points) {
+                                    standings[result.driverId].points += result.points;
+                                }
+                            });
+                        }
+                    });
+                    return Object.values(standings).sort((a, b) => b.points - a.points);
+                }
+
+                function calculateTeamStandings(driverStandings) {
+                    const teamStandings = {};
+                    Object.keys(db.teams).forEach(id => { teamStandings[id] = { id, points: 0 }; });
+                    driverStandings.forEach(driverResult => {
+                        const driverInfo = db.drivers[driverResult.id];
+                        if (driverInfo) teamStandings[driverInfo.teamId].points += driverResult.points;
+                    });
+                    return Object.values(teamStandings).sort((a, b) => b.points - a.points);
+                }
+
+                // --- Render Logic ---
+                const driverStandings = calculateDriverStandings();
+                const teamStandings = calculateTeamStandings(driverStandings);
+                const driverContainer = document.getElementById('driver-standings-preview-list');
+                const teamContainer = document.getElementById('team-standings-preview-list');
+                const driverTemplate = document.getElementById('driver-standing-item-template');
+                const teamTemplate = document.getElementById('team-standing-item-template');
+
+                driverStandings.slice(0, 5).forEach((d, index) => {
+                    const driver = db.drivers[d.id];
+                    const team = db.teams[driver.teamId];
+                    const clone = driverTemplate.content.cloneNode(true);
+                    clone.querySelector('[data-rank]').textContent = index + 1;
+                    clone.querySelector('[data-name]').textContent = driver.name;
+                    clone.querySelector('[data-points]').textContent = d.points;
+                    clone.querySelector('[data-team-bar]').classList.add(team.className);
+                    driverContainer.appendChild(clone);
+                });
+
+                teamStandings.slice(0, 5).forEach((t, index) => {
+                    const team = db.teams[t.id];
+                    const clone = teamTemplate.content.cloneNode(true);
+                    clone.querySelector('[data-rank]').textContent = index + 1;
+                    clone.querySelector('[data-img]').src = team.logoUrl;
+                    clone.querySelector('[data-name]').textContent = team.name;
+                    clone.querySelector('[data-points]').textContent = t.points;
+                    teamContainer.appendChild(clone);
+                });
+            }
+            
+            // --- LOGIC FOR LATEST NEWS ---
+            function initLatestNews() {
+                if (typeof newsData === 'undefined') return;
+
+                const sortedNews = [...newsData].sort((a, b) => new Date(b.date) - new Date(a.date));
+                const [featured, ...other] = sortedNews;
+
+                const featuredContainer = document.getElementById('featured-news-home');
+                const otherContainer = document.getElementById('other-news-home');
+                const featuredTemplate = document.getElementById('featured-news-template');
+                const otherTemplate = document.getElementById('news-item-template');
+
+                // Render Featured Article
+                if (featured) {
+                    const clone = featuredTemplate.content.cloneNode(true);
+                    clone.querySelector('a').href = featured.url;
+                    clone.querySelector('[data-img]').src = featured.imageUrl;
+                    clone.querySelector('[data-category]').textContent = featured.category;
+                    clone.querySelector('[data-title]').textContent = featured.title;
+                    clone.querySelector('[data-snippet]').textContent = featured.snippet;
+                    featuredContainer.appendChild(clone);
+                }
+                
+                // Render 2 Other Articles
+                other.slice(0, 2).forEach(article => {
+                    const clone = otherTemplate.content.cloneNode(true);
+                    clone.querySelector('a').href = article.url;
+                    clone.querySelector('[data-img]').src = article.imageUrl;
+                    clone.querySelector('[data-category]').textContent = article.category;
+                    clone.querySelector('[data-title]').textContent = article.title;
+                    otherContainer.appendChild(clone);
+                });
+            }
+
+            // --- LOGIC FOR SCROLL ANIMATIONS ---
+            function initScrollAnimations() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                document.querySelectorAll('.anim-fade-in').forEach(el => {
+                    observer.observe(el);
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

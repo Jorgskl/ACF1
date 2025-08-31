@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC F1 | Results</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="navbar">
+            <a href="index.html" class="nav-logo">ACF1</a>
+            <ul class="nav-menu">
+                 <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="results.html" class="nav-link active">Results</a></li>
+                <li class="nav-item"><a href="rankings.html" class="nav-link">Power Rankings</a></li>
+                <li class="nav-item"><a href="standings.html" class="nav-link">Standings</a></li>
+                <li class="nav-item"><a href="news.html" class="nav-link">News</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="results-main-dark">
+        <div id="results-viewer" class="results-container-dark">
+            
+            <div id="event-selector-container" class="event-selector-container"></div>
+            
+            <div class="results-header-dark">
+                 <h2 id="event-title">Event Title</h2>
+                 <div id="day-selector-container" class="day-selector-dark"></div>
+            </div>
+
+            <div id="session-selector-container" class="session-selector-dark"></div>
+
+            <div id="table-view-container" class="table-container-dark">
+                <table class="results-table-dark">
+                    <thead id="thead-practice">
+                        <tr>
+                            <th>POS</th>
+                            <th class="driver-col">DRIVER</th>
+                            <th>TIME</th>
+                            <th>GAP</th>
+                            <th>LAPS</th>
+                        </tr>
+                    </thead>
+                    <thead id="thead-combined">
+                         <tr>
+                            <th>POS</th>
+                            <th class="driver-col">DRIVER</th>
+                            <th>BEST TIME</th>
+                            <th>GAP</th>
+                            <th>TOTAL LAPS</th>
+                            <th>SESSION</th>
+                        </tr>
+                    </thead>
+                     <thead id="thead-race">
+                        <tr>
+                            <th>POS</th>
+                            <th>NO</th>
+                            <th>DRIVER</th>
+                            <th>TEAM</th>
+                            <th>LAPS</th>
+                            <th>TIME/RETIRED</th>
+                            <th>PTS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results-tbody"></tbody>
+                </table>
+            </div>
+
+            <div id="strategy-view-container" class="table-container-dark" style="display: none;"></div>
+
+            <div id="fastest-lap-view-container" class="table-container-dark" style="display: none;"></div>
+        </div>
+    </main>
+
+    <!-- STRATEGY CARD TEMPLATE -->
+    <template id="strategy-card-template">
+        <div class="strategy-card">
+            <div class="strategy-pos" data-pos></div>
+            <div class="strategy-driver">
+                <span data-driver-name></span>
+                <img src="" class="team-logo-strategy" data-team-logo>
+            </div>
+            <div class="strategy-gain-loss" data-gain-loss></div>
+            <div class="strategy-stints" data-stints></div>
+            <div class="strategy-stops">
+                <span data-stops></span>
+            </div>
+            <div class="strategy-analysis" data-analysis></div>
+        </div>
+    </template>
+
+    <!-- FASTEST LAP TEMPLATE -->
+    <template id="fastest-lap-item-template">
+        <div class="fastest-lap-item">
+            <div class="fl-pos" data-rank></div>
+            <div class="fl-driver">
+                <img src="" class="driver-photo-small" data-driver-photo>
+                <span class="team-color-bar" data-team-bar></span>
+                <div>
+                    <span data-name></span>
+                    <small data-team-name></small>
+                </div>
+            </div>
+            <div class="fl-time" data-time></div>
+            <div class="fl-gap" data-gap></div>
+        </div>
+    </template>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="database.js"></script>
+    <script src="strategy.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>

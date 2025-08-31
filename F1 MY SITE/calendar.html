@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC F1 | Season Calendar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="navbar">
+            <a href="index.html" class="nav-logo">ACF1</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="results.html" class="nav-link">Results</a></li>
+                <li class="nav-item"><a href="rankings.html" class="nav-link">Power Rankings</a></li>
+                <li class="nav-item"><a href="standings.html" class="nav-link">Standings</a></li>
+                <li class="nav-item"><a href="calendar.html" class="nav-link active">Calendar</a></li>
+                <li class="nav-item"><a href="news.html" class="nav-link">News</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="rankings-main">
+        <div class="rankings-container">
+            <div class="rankings-header">
+                <h1>Season 3 Race Calendar</h1>
+                <p>The official schedule for the 2025 Assetto Corsa F1 Championship.</p>
+            </div>
+
+            <div id="calendar-grid" class="calendar-grid">
+                <!-- Calendar items will be injected here by JavaScript -->
+            </div>
+        </div>
+
+        <section id="latest-news" class="container">
+            <div class="section-title">
+                <span>LEAGUE UPDATES</span>
+                <h2>LATEST NEWS</h2>
+            </div>
+            <div id="news-grid-calendar" class="news-grid">
+                 <!-- Latest news will be injected here -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content container">
+            <p>&copy; 2025 Assetto Corsa F1 Tournament. All Rights Reserved.</p>
+    </footer>
+
+    <!-- TEMPLATE for a calendar item -->
+    <template id="calendar-item-template">
+        <div class="calendar-item">
+            <div class="calendar-round" data-round></div>
+            <div class="calendar-flag" data-flag></div>
+            <div class="calendar-details">
+                <span class="calendar-dates" data-dates></span>
+                <span class="calendar-country" data-country></span>
+                <span class="calendar-track" data-track></span>
+            </div>
+        </div>
+    </template>
+    
+    <!-- TEMPLATE for a news item -->
+    <template id="news-item-template">
+        <article class="news-item">
+            <a href="" class="read-more-link">
+                <img src="" alt="News Image" data-img>
+                <div class="news-content">
+                    <span class="news-category" data-category></span>
+                    <h3 data-title></h3>
+                    <p data-snippet></p>
+                    <span class="read-more">Read More &rarr;</span>
+                </div>
+            </a>
+        </article>
+    </template>
+
+    <script src="calendar_data.js"></script>
+    <script src="news_database.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Render Calendar ---
+            const calendarContainer = document.getElementById('calendar-grid');
+            const calendarTemplate = document.getElementById('calendar-item-template');
+            
+            if (typeof calendarData !== 'undefined' && calendarContainer) {
+                calendarData.forEach(race => {
+                    const clone = calendarTemplate.content.cloneNode(true);
+                    clone.querySelector('[data-round]').textContent = `R${race.round}`;
+                    clone.querySelector('[data-flag]').innerHTML = `<img src="${race.flagUrl}" alt="${race.country} Flag">`;
+                    clone.querySelector('[data-dates]').textContent = race.dates;
+                    clone.querySelector('[data-country]').textContent = race.country.toUpperCase();
+                    clone.querySelector('[data-track]').textContent = race.track;
+                    
+                    if (race.status === 'completed') {
+                        clone.querySelector('.calendar-item').classList.add('completed');
+                    } else if (race.status === 'upcoming') {
+                         clone.querySelector('.calendar-item').classList.add('upcoming');
+                    }
+
+                    calendarContainer.appendChild(clone);
+                });
+            }
+
+            // --- Render Latest News ---
+            const newsContainer = document.getElementById('news-grid-calendar');
+            const newsTemplate = document.getElementById('news-item-template');
+
+            if (typeof newsData !== 'undefined' && newsContainer) {
+                const sortedNews = [...newsData].sort((a, b) => new Date(b.date) - new Date(a.date));
+                const latestThree = sortedNews.slice(0, 3);
+
+                latestThree.forEach(article => {
+                    const clone = newsTemplate.content.cloneNode(true);
+                    clone.querySelector('a').href = article.url;
+                    clone.querySelector('[data-img]').src = article.imageUrl;
+                    clone.querySelector('[data-category]').textContent = article.category;
+                    clone.querySelector('[data-title]').textContent = article.title;
+                    clone.querySelector('[data-snippet]').textContent = article.snippet;
+                    newsContainer.appendChild(clone);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
